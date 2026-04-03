@@ -1,6 +1,6 @@
 import javax.swing.JOptionPane;
 
-public class Bai5 {
+public class Bai2_5 {
     public static void main(String[] args) {
         String strNum1, strNum2;
         double sum, dif, pro, quo;

@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-public class Bai6_1 {
+public class Bai2_6_1 {
     public static void main(String[] args) {
         String strA, strB;
         double a, b, x;
