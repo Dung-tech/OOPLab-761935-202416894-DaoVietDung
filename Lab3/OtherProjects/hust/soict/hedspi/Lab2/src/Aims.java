@@ -1,3 +1,5 @@
+package hust.soict.hedspi.Lab2.src;
+
 public class Aims {
     public static void main(String[] agrs){
         Cart anOrder = new Cart();

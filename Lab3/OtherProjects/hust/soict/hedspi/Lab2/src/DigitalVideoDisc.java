@@ -1,3 +1,5 @@
+package hust.soict.hedspi.Lab2.src;
+
 public class DigitalVideoDisc {
     private String title;
     private String category;

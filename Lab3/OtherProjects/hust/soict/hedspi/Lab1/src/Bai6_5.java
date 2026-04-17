@@ -1,0 +1,26 @@
+package hust.soict.hedspi.Lab1.src;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Bai6_5 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter the number of elements in the array: ");
+        int n = sc.nextInt();
+        double[] my_array = new double[n];
+        double sum = 0;
+
+        for (int i = 0; i < n; i++) {
+            my_array[i] = sc.nextDouble();
+            sum += my_array[i];
+        }
+
+        Arrays.sort(my_array);
+
+        System.out.println("Sorted array: " + Arrays.toString(my_array));
+        System.out.println("Sum of array elements: " + sum);
+        System.out.println("Average value: " + (sum / n));
+    }
+}

@@ -1,3 +1,5 @@
+package hust.soict.hedspi.Lab2.src;
+
 public class TestPassingParameter {
 
     public static void main(String[] args) {
