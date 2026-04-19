@@ -61,5 +61,16 @@ public class DigitalVideoDisc {
     public float getCost() {
         return cost;
     }
+    public int getId() { return id;}
 
+    @Override
+    public String toString() {
+        return "DVD - " + getTitle() + " - " + getCategory()
+                + " - " + getDirector() + " - " + getLength()
+                + ": " + getCost() + " $";
+    }
+
+    public boolean isMatch(String title) {
+        return getTitle().toLowerCase().contains(title.toLowerCase().trim());
+    }
 }

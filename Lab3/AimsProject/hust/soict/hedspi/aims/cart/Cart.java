@@ -74,4 +74,44 @@ public class Cart {
         System.out.println("Total cost: " + totalCost() + " $");
         System.out.println("***************************************************");
     }
+    public void print() {
+        System.out.println("***********************CART***********************");
+        System.out.println("Ordered Items:");
+
+        // Giả sử bạn đang dùng mảng itemsOrdered và biến qtyOrdered để quản lý số lượng
+        for (int i = 0; i < qtyOrdered; i++) {
+            // TỐI ƯU: Chỉ cần gọi toString() của đối tượng
+            System.out.println((i + 1) + ". " + itemsOrdered[i].toString());
+        }
+
+        System.out.println("Total cost: " + totalCost() + " $");
+        System.out.println("***************************************************");
+    }
+    public void searchById(int id) {
+        boolean found = false;
+        for (int i = 0; i < qtyOrdered; i++) {
+            DigitalVideoDisc dvd = itemsOrdered[i];
+            if (dvd != null && dvd.getId() == id) {
+                System.out.println(dvd.toString());
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("No match found for ID: " + id);
+        }
+    }
+
+    public void searchByTitle(String title) {
+        boolean found = false;
+        for (int i = 0; i < qtyOrdered; i++) {
+            DigitalVideoDisc dvd = itemsOrdered[i];
+            if (dvd != null && dvd.isMatch(title)) {
+                System.out.println(dvd.toString());
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("No match found for title: \"" + title + "\"");
+        }
+    }
 }
