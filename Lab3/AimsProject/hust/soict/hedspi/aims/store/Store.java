@@ -1,46 +1,36 @@
 package hust.soict.hedspi.aims.store;
 
-import hust.soict.hedspi.aims.media.DigitalVideoDisc;
+import hust.soict.hedspi.aims.media.Media;
+import java.util.ArrayList;
 
 public class Store {
     public static final int MAX_NUMBERS_ITEMS_IN_STORE = 100;
-    private DigitalVideoDisc[] itemsInStore = new DigitalVideoDisc[MAX_NUMBERS_ITEMS_IN_STORE];
-    private int qtyInStore = 0;
+    private ArrayList<Media> itemsInStore = new ArrayList<Media>();
 
-    public void addDVD(DigitalVideoDisc dvd) {
-        if (qtyInStore < MAX_NUMBERS_ITEMS_IN_STORE) {
-            itemsInStore[qtyInStore] = dvd;
-            qtyInStore++;
-            System.out.println("The disc \"" + dvd.getTitle() + "\" has been added to the store.");
+    // Thêm media vào Store
+    public void addMedia(Media media) {
+        if (itemsInStore.contains(media)) {
+            System.out.println("The media is already in the store.");
         } else {
-            System.out.println("The store is full. Cannot add more discs.");
+            itemsInStore.add(media);
+            System.out.println("The media \"" + media.getTitle() + "\" has been added to the store.");
         }
     }
 
-    public void removeDVD(DigitalVideoDisc dvd) {
-        if (dvd == null) {
-            System.out.println("No disc to remove.");
-            return;
-        }
-
-        boolean found = false;
-        for (int i = 0; i < qtyInStore; i++) {
-            if (itemsInStore[i] == dvd) {
-                for (int j = i; j < qtyInStore - 1; j++) {
-                    itemsInStore[j] = itemsInStore[j + 1];
-                }
-                itemsInStore[qtyInStore - 1] = null;
-                qtyInStore--;
-                found = true;
-                System.out.println("The disc \"" + dvd.getTitle() + "\" has been removed from the store.");
-                break;
-            }
-        }
-        if (!found) {
-            System.out.println("The disc is not in the store.");
+    // Xóa media khỏi Store
+    public void removeMedia(Media media) {
+        if (itemsInStore.remove(media)) {
+            System.out.println("The media \"" + media.getTitle() + "\" has been removed from the store.");
+        } else {
+            System.out.println("The media is not in the store.");
         }
     }
+
+    // Getter để kiểm tra số lượng (dùng cho test)
     public int getQtyInStore() {
-        return qtyInStore;
+        return itemsInStore.size();
+    }
+    public ArrayList<Media> getItemsInStore() {
+        return itemsInStore;
     }
 }

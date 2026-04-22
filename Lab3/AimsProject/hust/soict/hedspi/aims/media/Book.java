@@ -9,6 +9,9 @@ public class Book extends Media {
     public Book(){
     super();
     }
+    public Book(String title, String category, float cost) {
+        super(title, category, cost);
+    }
 
     public List<String> getAuthors() {
         return authors;

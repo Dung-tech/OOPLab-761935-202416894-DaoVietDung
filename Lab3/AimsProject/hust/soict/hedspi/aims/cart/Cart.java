@@ -1,98 +1,53 @@
 package hust.soict.hedspi.aims.cart;
 
-import hust.soict.hedspi.aims.media.DigitalVideoDisc;
+import hust.soict.hedspi.aims.media.Media;
+import java.util.ArrayList;
 
 public class Cart {
-    public static final int MAX_NUMBERS_ORDERED = 20;
-    private DigitalVideoDisc itemsOrdered[] = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
-    private int qtyOrdered;
-    public void addDigitalVideoDisc(DigitalVideoDisc disc){
-        if(qtyOrdered < MAX_NUMBERS_ORDERED){
-            itemsOrdered[qtyOrdered] = disc;
-            qtyOrdered++;
-            System.out.println("The disc has been added.");
-        }
-        else{
-            System.out.println("The cart is full.");
-        }
-    }
-    public void addDigitalVideoDisc(DigitalVideoDisc... dvdList) {
-        for (DigitalVideoDisc disc : dvdList) {
-            if (qtyOrdered < MAX_NUMBERS_ORDERED) {
-                itemsOrdered[qtyOrdered] = disc;
-                qtyOrdered++;
-                System.out.println("The disc \"" + disc.getTitle() + "\" has been added.");
-            } else {
-                System.out.println("The cart is full. Cannot add: " + disc.getTitle());
-                break;
-            }
-        }
-    }
-    public void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
-        if (qtyOrdered + 2 <= MAX_NUMBERS_ORDERED) {
-            addDigitalVideoDisc(dvd1);
-            addDigitalVideoDisc(dvd2);
+    private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
+
+    public void addMedia(Media media) {
+        if (itemsOrdered.contains(media)) {
+            System.out.println("The media is already in the cart.");
         } else {
-            System.out.println("The cart is almost full. Cannot add both discs.");
+            itemsOrdered.add(media);
+            System.out.println("The media \"" + media.getTitle() + "\" has been added.");
         }
     }
-    public void removeDigitalVideoDisc(DigitalVideoDisc disc){
-        int index = -1;
-        for(int i = 0; i < qtyOrdered;i++){
-            if(itemsOrdered[i] == disc) {
-                index = i;
-                break;
-            }
-        }
-        if(index == -1) {
-            System.out.println("There curently no ordered for this disc.");
-        }
-        else{
-            for(int i = index + 1; i < qtyOrdered;i++) itemsOrdered[i - 1] = itemsOrdered[i];
-            itemsOrdered[qtyOrdered-1] = null;
-            qtyOrdered--;
-            System.out.println("The disc has been removed.");
+
+    public void removeMedia(Media media) {
+        if (itemsOrdered.remove(media)) {
+            System.out.println("The media \"" + media.getTitle() + "\" has been removed.");
+        } else {
+            System.out.println("The media is not in the cart.");
         }
     }
+
     public float totalCost() {
         float total = 0;
-        for (int i = 0; i < qtyOrdered; i++) {
-            total += itemsOrdered[i].getCost();
+        for (Media media : itemsOrdered) {
+            total += media.getCost();
         }
         return total;
     }
-    public void printCart() {
-        System.out.println("***********************CART***********************");
-        System.out.println("Ordered Items:");
-        for (int i = 0; i < qtyOrdered; i++) {
-            System.out.println((i + 1) + ". DVD - " + itemsOrdered[i].getTitle() +
-                    " - " + itemsOrdered[i].getCategory() +
-                    " - " + itemsOrdered[i].getDirector() +
-                    " - " + itemsOrdered[i].getLength() +
-                    ": " + itemsOrdered[i].getCost() + " $");
-        }
-        System.out.println("Total cost: " + totalCost() + " $");
-        System.out.println("***************************************************");
-    }
+
     public void print() {
         System.out.println("***********************CART***********************");
         System.out.println("Ordered Items:");
-
-        // Giả sử bạn đang dùng mảng itemsOrdered và biến qtyOrdered để quản lý số lượng
-        for (int i = 0; i < qtyOrdered; i++) {
-            // TỐI ƯU: Chỉ cần gọi toString() của đối tượng
-            System.out.println((i + 1) + ". " + itemsOrdered[i].toString());
+        int i = 1;
+        for (Media media : itemsOrdered) {
+            System.out.println(i + ". " + media.toString());
+            i++;
         }
-
         System.out.println("Total cost: " + totalCost() + " $");
         System.out.println("***************************************************");
     }
+
     public void searchById(int id) {
         boolean found = false;
-        for (int i = 0; i < qtyOrdered; i++) {
-            DigitalVideoDisc dvd = itemsOrdered[i];
-            if (dvd != null && dvd.getId() == id) {
-                System.out.println(dvd.toString());
+        for (Media media : itemsOrdered) {
+            if (media.getId() == id) {
+                System.out.println(media.toString());
                 found = true;
             }
         }
@@ -103,15 +58,26 @@ public class Cart {
 
     public void searchByTitle(String title) {
         boolean found = false;
-        for (int i = 0; i < qtyOrdered; i++) {
-            DigitalVideoDisc dvd = itemsOrdered[i];
-            if (dvd != null && dvd.isMatch(title)) {
-                System.out.println(dvd.toString());
+        for (Media media : itemsOrdered) {
+            if (media.getTitle().toLowerCase().contains(title.toLowerCase().trim())) {
+                System.out.println(media.toString());
                 found = true;
             }
         }
         if (!found) {
             System.out.println("No match found for title: \"" + title + "\"");
         }
+    }
+    public void sortByTitleCost() {
+        itemsOrdered.sort(Media.COMPARE_BY_TITLE_COST);
+        System.out.println("Cart has been sorted by Title then Cost.");
+    }
+
+    public void sortByCostTitle() {
+        itemsOrdered.sort(Media.COMPARE_BY_COST_TITLE);
+        System.out.println("Cart has been sorted by Cost then Title.");
+    }
+    public ArrayList<Media> getItemsOrdered() {
+        return itemsOrdered;
     }
 }

@@ -10,10 +10,7 @@ public class Disc extends Media {
     }
 
     public Disc(String director, String category, String title, float cost) {
-        super();
-        this.setTitle(title);
-        this.setCategory(category);
-        this.setCost(cost);
+        super(title, category, cost);
         this.director = director;
     }
 

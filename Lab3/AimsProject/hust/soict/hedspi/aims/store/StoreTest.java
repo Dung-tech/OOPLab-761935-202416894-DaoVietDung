@@ -12,16 +12,16 @@ public class StoreTest {
         DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin", "Animation", 18.99f);
 
         // Test addDVD
-        store.addDVD(dvd1);
-        store.addDVD(dvd2);
-        store.addDVD(dvd3);
+        store.addMedia(dvd1);
+        store.addMedia(dvd2);
+        store.addMedia(dvd3);
         System.out.println("Number of DVDs in store: " + store.getQtyInStore());
 
         // Test removeDVD
-        store.removeDVD(dvd2);
+        store.removeMedia(dvd2);
         System.out.println("Number of DVDs in store after remove: " + store.getQtyInStore());
 
         // Test remove DVD không tồn tại
-        store.removeDVD(new DigitalVideoDisc("Non-exist", "Unknown", 10.0f));
+        store.removeMedia(new DigitalVideoDisc("Non-exist", "Unknown", 10.0f));
     }
 }
