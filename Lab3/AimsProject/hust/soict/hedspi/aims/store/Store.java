@@ -26,7 +26,7 @@ public class Store {
         }
     }
 
-    // Getter để kiểm tra số lượng (dùng cho test)
+    // Getter để kiểm tra số lượng
     public int getQtyInStore() {
         return itemsInStore.size();
     }

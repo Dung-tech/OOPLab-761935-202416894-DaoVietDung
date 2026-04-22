@@ -34,4 +34,11 @@ public class Book extends Media {
             System.out.println("Author \"" + authorName + "\" does not exist.");
         }
     }
+    @Override
+    public String toString() {
+        return "Book - " + getTitle()
+                + " - " + getCategory()
+                + " - Authors: " + getAuthors()
+                + " - Cost: " + getCost() + " $";
+    }
 }
