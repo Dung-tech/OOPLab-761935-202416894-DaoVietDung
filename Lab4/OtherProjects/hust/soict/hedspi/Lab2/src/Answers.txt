@@ -1,0 +1,14 @@
+Section 10: Overloading Constructor
+    Câu hỏi: Nếu bạn tạo một Constructor để tạo DVD theo title, sau đó tạo một cái khác để tạo theo category. Java có cho phép điều này không?
+Trả lời : Không do Java phân biệt các Constructor (hoặc Method) dựa trên Signature (Chữ ký), bao gồm: Tên hàm và Kiểu dữ liệu của các tham số.
+title và category cùng kiểu dữ liệu String nên chữ kí của chúng giống nhau dẫn đến việc Java không phân biệt được.
+
+Section 15 : Passing Parameter
+    Câu hỏi 1 : Java là ngôn ngữ Pass-by-Value hay Pass-by-Reference?
+Java là ngôn ngữ Pass-by-Value (Truyền tham trị) 100%. Đối với đối tượng, "giá trị" được truyền đi chính là địa chỉ (reference) của đối tượng đó.
+
+    Câu hỏi 2 : Tại sao sau khi gọi swap(jungleDVD, cinderellaDVD), title của hai đối tượng vẫn giữ nguyên?
+Trả lời : Vì hàm swap chỉ tráo đổi hai bản sao địa chỉ trong nội bộ hàm. Hai biến gốc ở hàm main vẫn trỏ về địa chỉ cũ, nên đối tượng không hề bị thay đổi hay tráo đổi vị trí.
+
+    Câu hỏi 3 : Tại sao sau khi gọi changeTitle(jungleDVD, cinderellaDVD.getTitle()), title của JungleDVD lại thay đổi?
+Trả lời : Vì hàm changeTitle đã dùng bản sao địa chỉ để truy cập trực tiếp vào nội dung bên trong đối tượng (thông qua hàm setTitle). Dù địa chỉ là bản sao, nhưng nó vẫn dẫn đến cùng một đối tượng thực trên bộ nhớ Heap.
