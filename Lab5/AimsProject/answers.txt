@@ -1,0 +1,39 @@
+LAB 04 - GUI PROGRAMMING WITH SWING
+Student: Đào Việt Dũng
+Student ID: 202416894
+
+1. Swing components
+
+1.3 Compare Swing and AWT elements:
+
+1. Compare the top-level containers in Swing and AWT:
+   - AWT: Top-level container là Frame. Các component được add trực tiếp lên Frame.
+   - Swing: Top-level container là JFrame. Các lightweight component phải được add vào ContentPane (getContentPane().add()).
+
+2. Compare the class name of components in AWT and the corresponding class’s name in Swing:
+   - AWT: Label, TextField, Button...
+   - Swing: JLabel, JTextField, JButton... (các class bắt đầu bằng chữ J).
+
+3. Compare the event-handling of Swing and AWT applications:
+   - Event-handling hoàn toàn giống nhau. Cả hai đều sử dụng ActionListener, ActionEvent và phương thức actionPerformed(ActionEvent evt).
+
+4. Compare the resulting appearances:
+   - AWT: Heavyweight components, giao diện phụ thuộc vào hệ điều hành.
+   - Swing: Lightweight components, giao diện đồng nhất trên mọi nền tảng và hỗ trợ pluggable Look & Feel.
+
+2. Organizing Swing components with Layout Managers
+
+Em đã hoàn thành class NumberGrid:
+- Sử dụng BorderLayout cho JFrame.
+- Sử dụng GridLayout(4, 3) cho panel chứa các nút số.
+- Xử lý sự kiện nút bấm bằng inner class ButtonListener (xử lý 3 trường hợp: nhấn số, DEL, C).
+
+3. Create a graphical user interface for AIMS with Swing (Store Manager)
+
+Em đã triển khai:
+- StoreManagerScreen sử dụng BorderLayout, có menu bar (Options) và header “AIMS”.
+- MediaStore là JPanel hiển thị từng item media (title, cost, nút Play nếu implements Playable).
+- Sử dụng inheritance: tạo class cha AddItemToStoreScreen và 3 class con (AddBookToStoreScreen, AddCompactDiscToStoreScreen, AddDigitalVideoDiscToStoreScreen).
+- Event handling đầy đủ: menu Update Store mở màn hình Add, View store quay lại StoreManagerScreen, nút Play mở JDialog.
+
+UML: Đã cập nhật Class Diagram bằng cách thêm package screen.manager cùng các class GUI, vẽ inheritance và dependency. Đã export file .png mới vào thư mục Design.
