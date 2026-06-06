@@ -1,30 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
 
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="hust.soict.hedspi.javafx.PainterController"
+            prefWidth="640" prefHeight="480">
 
-<BorderPane fx:controller="hust.soict.hedspi.javafx.PainterController"
-            maxHeight="-Infinity" maxWidth="-Infinity"
-            minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="480.0" prefWidth="640.0"
-            xmlns="http://javafx.com/javafx/17.0.12"
-            xmlns:fx="http://javafx.com/fxml/1">
-   <padding>
-      <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-   </padding>
+   <fx:define>
+      <ToggleGroup fx:id="toolGroup"/>
+   </fx:define>
+
    <left>
-      <VBox maxHeight="1.7976931348623157E308" spacing="8.0" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets right="8.0" />
-         </BorderPane.margin>
-         <children>
-            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clearButtonPressed" text="Clear" />
-         </children>
+      <VBox spacing="8">
+         <TitledPane text="Tools" collapsible="false">
+            <content>
+               <VBox spacing="5">
+                  <RadioButton fx:id="penRadioButton" text="Pen" selected="true"
+                               toggleGroup="$toolGroup"/>
+                  <RadioButton fx:id="eraserRadioButton" text="Eraser"
+                               toggleGroup="$toolGroup"/>
+               </VBox>
+            </content>
+         </TitledPane>
+         <Button text="Clear" maxWidth="Infinity" onAction="#clearButtonPressed"/>
       </VBox>
    </left>
+
    <center>
-      <Pane fx:id="drawingAreaPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" onMousePressed="#drawingAreaMouseDragged"/>
+      <Pane fx:id="drawingAreaPane"
+            style="-fx-background-color: white;"
+            onMouseDragged="#drawingAreaMouseDragged"
+            onMousePressed="#drawingAreaMouseDragged"/>
    </center>
+
 </BorderPane>
