@@ -8,6 +8,8 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import hust.soict.hedspi.aims.exception.PlayerException;
+import javafx.scene.control.Alert;
 
 public class ItemController {
 
@@ -44,7 +46,15 @@ public class ItemController {
     @FXML
     private void btnPlayClicked() {
         if (media instanceof Playable) {
-            ((Playable) media).play();
+            try {
+                ((Playable) media).play();
+            } catch (PlayerException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Playback Error");
+                alert.setHeaderText("Cannot play this media");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+            }
         }
     }
 }

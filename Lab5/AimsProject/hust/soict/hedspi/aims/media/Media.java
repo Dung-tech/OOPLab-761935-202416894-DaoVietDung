@@ -54,6 +54,6 @@ public class Media {
         if (obj == null || getClass() != obj.getClass()) return false;
 
         Media media = (Media) obj;
-        return title != null && title.equalsIgnoreCase(media.title);
+        return id == media.id;
     }
 }

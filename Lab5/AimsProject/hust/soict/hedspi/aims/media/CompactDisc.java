@@ -1,19 +1,25 @@
 package hust.soict.hedspi.aims.media;
 
 import java.util.ArrayList;
+import hust.soict.hedspi.aims.exception.PlayerException;
 
 public class CompactDisc extends Disc implements Playable {
 
     private String artist;
+    private static int nbCompactDiscs = 0;
     private ArrayList<Track> tracks = new ArrayList<Track>();
 
     public CompactDisc() {
         super();
+        nbCompactDiscs++;
+        this.setId(nbCompactDiscs);
     }
 
     public CompactDisc(String artist, String director, String category, String title, float cost) {
         super(director, category, title, cost);
         this.artist = artist;
+        nbCompactDiscs++;
+        this.setId(nbCompactDiscs);
     }
 
     public String getArtist() {
@@ -48,13 +54,14 @@ public class CompactDisc extends Disc implements Playable {
     }
 
     @Override
-    public void play() {
+    public void play() throws PlayerException {          // ← Thêm "throws PlayerException"
         System.out.println("Playing CD: " + getTitle());
         System.out.println("Artist: " + artist);
         System.out.println("CD length: " + getLength() + " minutes");
         System.out.println("Track list:");
+
         for (Track track : tracks) {
-            track.play();
+            track.play();           // Giữ nguyên
         }
     }
     @Override

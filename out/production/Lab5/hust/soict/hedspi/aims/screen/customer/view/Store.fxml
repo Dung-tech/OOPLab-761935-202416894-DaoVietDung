@@ -8,8 +8,6 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="hust.soict.hedspi.aims.screen.customer.controller.StoreController"
             prefWidth="1024" prefHeight="768">
-
-    <!-- Header -->
     <top>
         <VBox spacing="10" BorderPane.alignment="CENTER">
             <padding>

@@ -4,13 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Book extends Media {
+    private static int nbBooks = 0;
     private List<String> authors = new ArrayList<String>();
 
     public Book(){
     super();
+    nbBooks++;
+    this.setId(nbBooks);
     }
     public Book(String title, String category, float cost) {
         super(title, category, cost);
+        nbBooks++;
+        this.setId(nbBooks);
     }
 
     public List<String> getAuthors() {

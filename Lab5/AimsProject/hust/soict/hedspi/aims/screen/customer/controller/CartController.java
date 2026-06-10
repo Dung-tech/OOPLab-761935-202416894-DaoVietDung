@@ -9,6 +9,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import hust.soict.hedspi.aims.exception.PlayerException;
 
 public class CartController {
 
@@ -92,8 +93,18 @@ public class CartController {
     @FXML
     private void btnPlayPressed() {
         Media selected = tblMedia.getSelectionModel().getSelectedItem();
+
         if (selected instanceof Playable) {
-            ((Playable) selected).play();
+            try {
+                ((Playable) selected).play();
+            } catch (PlayerException e) {
+                // Hiển thị thông báo lỗi cho người dùng
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Playback Error");
+                alert.setHeaderText("Cannot play this media");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+            }
         }
     }
 

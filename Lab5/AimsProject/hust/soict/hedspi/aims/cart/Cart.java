@@ -73,11 +73,13 @@ public class Cart {
     }
 
     public void sortByTitleCost() {
-        System.out.println("Sorted by Title then Cost (chưa implement chi tiết).");
+        itemsOrdered.sort(Media.COMPARE_BY_TITLE_COST);
+        System.out.println("Cart has been sorted by Title then Cost.");
     }
 
     public void sortByCostTitle() {
-        System.out.println("Sorted by Cost then Title (chưa implement chi tiết).");
+        itemsOrdered.sort(Media.COMPARE_BY_COST_TITLE);
+        System.out.println("Cart has been sorted by Cost then Title.");
     }
 
     public ObservableList<Media> getItemsOrdered() {
