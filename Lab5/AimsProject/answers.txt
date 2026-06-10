@@ -1,0 +1,15 @@
+LAB 05 - GUI PROGRAMMING WITH JAVAFX
+Student: Đào Việt Dũng
+Student ID: 202416894
+Câu hỏi từ Section 11 (Update the Aims class):
+"The Aims class must be updated to handle any exceptions generated when the play() methods are called. What happens when you don’t update for them to catch?"
+Trả lời:
+Nếu lớp Aims không được cập nhật để xử lý ngoại lệ khi gọi các phương thức play(), chương trình sẽ gặp lỗi biên dịch.
+Cụ thể, vì PlayerException là checked exception (kế thừa trực tiếp từ java.lang.Exception chứ không phải RuntimeException), trình biên dịch Java bắt buộc phải:
+
+Bắt ngoại lệ bằng khối try-catch tại nơi gọi play().
+Hoặc khai báo "throws PlayerException" trong chữ ký phương thức để ngoại lệ được truyền lên trên.
+
+Nếu không làm cả hai việc trên, trình biên dịch sẽ báo lỗi: "Unhandled exception type PlayerException". Lúc này chương trình không thể chạy được và phải sửa code mới compile thành công.
+Giải thích chi tiết:
+Nếu không xử lý, ngoại lệ sẽ được ném ra và làm chương trình dừng đột ngột (crash) mà không có thông báo rõ ràng cho người dùng. Việc sử dụng try-catch cho phép bắt ngoại lệ, in thông tin lỗi (getMessage(), printStackTrace()) và tiếp tục chạy chương trình một cách an toàn, giúp trải nghiệm người dùng tốt hơn.
